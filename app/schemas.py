@@ -1,8 +1,12 @@
-# from pydantic import BaseModel
+from pydantic import BaseModel
 
-# class DataSchema(BaseModel):
-#     id: int
-#     nom: str
+class PersonneSchema(BaseModel):
+    numero: int
+    prenom_nom: str
+    sexe: str
+    age: int
+    region: str
+    departement: str
 
-#     class Config:
-#         orm_mode = True
+    class Config:
+        from_attributes = True
