@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
-from database import SessionLocal, engine, Base
-from models import Personne
-import crud
+from .database import SessionLocal, engine, Base
+from .models import Personne
+from .crud import get_all, get_by_region, get_by_age
 
 Base.metadata.create_all(bind=engine)
 
@@ -22,14 +22,14 @@ def home():
 # Tous les enregistrements
 @app.get("/personnes")
 def read_all(db: Session = Depends(get_db)):
-    return crud.get_all(db)
+    return get_all(db)
 
 # Filtre par région
 @app.get("/personnes/region/{region}")
 def by_region(region: str, db: Session = Depends(get_db)):
-    return crud.get_by_region(db, region)
+    return get_by_region(db, region)
 
 # Filtre par âge
 @app.get("/personnes/age/{age}")
 def by_age(age: int, db: Session = Depends(get_db)):
-    return crud.get_by_age(db, age)
+    return get_by_age(db, age)
