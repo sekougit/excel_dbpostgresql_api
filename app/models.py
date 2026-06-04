@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String
 from .database import Base
 
 class Personne(Base):
-    __tablename__ = "personnes"
+    __tablename__ = "donnees"
 
     numero = Column(Integer, primary_key=True, index=True)
     prenom_nom = Column(String, index=True)
